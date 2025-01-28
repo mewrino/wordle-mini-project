@@ -71,7 +71,10 @@ int main()
 * As long as the user does not get all four correct, they keep getting asked for their guess.
 * After the user finally gets all of them correct (yes - all four), they are congratulated and then told how many tries it took them.
 
-Starter code has been provided for you.  You are free to use it, or solve the problem in a different way.
+Starter code has been provided for you.  You are free to use it, or solve the problem in a different way.  In the starter code, you can complete the program by writing three procedures
+* `std::vector<int> createSecret()` - This procedure takes no parameters, and returns the secret code, which is a vector of ints.  You can give this procedure a parameter when doing the extension problem.
+* `std::vector<std::string> getHint(std::vector<int> secret, std::vector<int> guess)` - This procedure takes in the secret code and the user guess, and returns the hint which is a vector of `std::string`.  The list is filled with either `"O"` or `"X"`.
+* `bool winGame(std::vector<int> secret, std::vector<int> guess)` - This procedure takes in the secret code and the user guess and returns `true` if they match, and `false` otherwise.  Alternatively, you could also change the procedure to take in the hint as a single parameter, and determine whether you win based off of the hint instead.
 
 ## Extensions
 * Limit users to only 10 attempts to get the "Secret Code"
