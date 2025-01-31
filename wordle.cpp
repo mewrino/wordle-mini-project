@@ -22,8 +22,13 @@ std::vector<std::string> getHint(std::vector<int> secret, std::vector<int> guess
 }
 
 bool winGame(std::vector<int> secret, std::vector<int> guess) {
-    // Write this procedure here
-    return false;    // replace this with your code
+    if (secret.size() != guess.size())
+    {
+        return false;
+    }
+
+    // add more code here
+    return false;
 }
 
 int main()
@@ -34,7 +39,7 @@ int main()
     // srand(time(0));
     
     std::vector<int> secret_code = createSecret();
-    std::vector<int> user_guess = {};
+    std::vector<int> user_guess = {-1, -1, -1, -1};
     std::vector<std::string> hint = {};    // an empty list
 
     int secret_code_length = 4;
