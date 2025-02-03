@@ -8,59 +8,61 @@
 #include <cstdlib>   // srand, rand
 #include <ctime>     // time
 #include <iostream>  // std::cin, std::cout
+#include <string>    // std::string, std::getline
 #include <vector>    // std::vector
 
-// Function to generate a secret code of 4 random numbers from 1-9
 std::vector<int> createSecret() {
-    std::vector<int> secret;
-    srand(time(0)); // Seed random number generator
-    for (int i = 0; i < 4; i++) {
-        secret.push_back(rand() % 9 + 1); // Random number between 1 and 9
-    }
-    return secret;
+    // Write this procedure here
+    return {};    // replace this with your code
 }
 
-// Function to generate hints based on user guess
 std::vector<std::string> getHint(std::vector<int> secret, std::vector<int> guess) {
-    std::vector<std::string> hint(4, "X");
-    
-    for (int i = 0; i < 4; i++) {
-        if (secret[i] == guess[i]) {
-            hint[i] = "O"; // Correct number and position
-        }
-    }
-    
-    return hint;
+    // Write this procedure here
+    return {"X", "X", "X", "X"};    // replace this with your code
 }
 
-// Function to check if the user has won the game
 bool winGame(std::vector<int> secret, std::vector<int> guess) {
-    return secret == guess;
+    if (secret.size() != guess.size())
+    {
+        return false;
+    }
+
+    // add more code here
+    return false;
 }
 
-int main() {
+int main()
+{
+    // Seeding the random number generator
+    // Uncomment the code when you are finished testing your program
+    // and want to have the program run for real
+    // srand(time(0));
+    
     std::vector<int> secret_code = createSecret();
-    std::vector<int> user_guess(4);
-    std::vector<std::string> hint;
+    std::vector<int> user_guess = {-1, -1, -1, -1};
+    std::vector<std::string> hint = {};    // an empty list
+
+    int secret_code_length = 4;
     int num_guesses = 0;
+
+    std::cout << "Welcome to Number Wordle!\n";
     
-    std::cout << "Welcome to Number Wordle! Guess the 4-digit secret code using numbers 1-9.\n";
-    
-    do {
+    while (!winGame(secret_code, user_guess))    // while you have not won the game yet
+    {
         std::cout << "\nEnter your guess: ";
-        
-        // Reset user_guess before taking input
-        for (int i = 0; i < 4; i++) {
-            std::cin >> user_guess[i];
+        hint = {};    // reset the hint for the next guess
+        for (int counter = 0; counter < secret_code_length; counter = counter + 1)
+        {
+            int input;
+            std::cin >> input;
+            user_guess.push_back(input);    // can also do append(guess, input);
         }
 
-        // Generate and display hint
         hint = getHint(secret_code, user_guess);
         display(hint);
-        num_guesses++;
-        
-    } while (!winGame(secret_code, user_guess)); // Repeat until the user wins
-    
-    std::cout << "Congrats! You guessed the code in " << num_guesses << " tries.\n";
+        num_guesses = num_guesses + 1;
+    }
+
+    std::cout << "Congrats!  You guessed the code!  It took you " << num_guesses << " tries.\n";
     return 0;
 }
